@@ -5246,15 +5246,15 @@
 			}
 			
 			// refresh the page on the half hour
-			setInterval(refresh(layer), 60000);
-			function refresh(layer) {
+			setInterval(refresh, 60000);
+			function refresh() {
 				var d = new Date(); 
 				var m = d.getMinutes();
 				if (m == 0 || m == 30) {
-					//location.reload(true);
-					layer.setStyle({
-					  fillColor: getColor(feature, percentFull),
-					});
+					location.reload(true);
+					//layer.setStyle({
+					//  fillColor: getColor(feature, percentFull),
+					//});
 				}
 			}
 			
