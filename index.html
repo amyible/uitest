@@ -284,6 +284,7 @@
 				var res = openTimes.split(", ");
 				for (i in res) {
 				  if (res.substring(0,5) <= curTime && curTime <= res.substring(6)) {isClosed = false;}
+				}
 				if (isClosed) {return '#A0A0A0';}
 				return percentFull > 80 ? '#E50000' :
 				percentFull > 60 ? '#DB6300' :
