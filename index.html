@@ -5224,8 +5224,8 @@
 				}
 				var res = openTimes.split(", ");
 				for (i in res) {
-				  var start = res.substring(0,5);
-				  var end = res.substring(6);
+				  var start = i.substring(0,5);
+				  var end = i.substring(6);
 				  if (end <= start) {end = (parseInt(end) + 24) + "";} 
 				  if (start <= curTime && curTime <= end) {isClosed = false;}
 				}
