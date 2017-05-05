@@ -76,7 +76,7 @@
 	    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	    <script type="text/javascript"> 
 	    	google.charts.load('current', {'packages':['corechart']});
-	    	//google.charts.setOnLoadCallback(drawChart);
+	    	google.charts.setOnLoadCallback(drawChart);
 	    </script>
 
 		<!-- styles -->
@@ -5227,7 +5227,6 @@
 				  var end = res[i].substring(6);
 				  if (end <= start) {end = (parseInt(end.substring(0,3)) + 24) + ":" + end.substring(3);} 
 				  if (start <= curTime && curTime <= end) {isClosed = false;}
-				console.log(start + "," + curTime + "," + end + "=" + isClosed);
 				}
 				if (isClosed) {return '#A0A0A0';}
 				return percentFull > 80 ? '#E50000' :
@@ -5363,7 +5362,7 @@
     				.setContent('<div id="' + chartId + '" style="width: 500px; height: 300px"></div>')
     				.openOn(mymap);
 			popupId++;
-    			//drawChart(chartId, prop.name);
+    			drawChart(chartId, prop.name);
 			}
 		</script>
 	</body>
