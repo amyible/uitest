@@ -5218,14 +5218,16 @@
 				if (m < 10) {m = "0" + m;}
 				var curTime = h + ":" + m;
 				console.log(feature.properties.name);
-				//var openTimes = feature.properties.hours[curDay];
-				var openTimes = "CLOSED";
+				var openTimes = feature.properties.hours[curDay];
 				if (openTimes == "CLOSED") {
 				  return '#A0A0A0';
 				}
 				var res = openTimes.split(", ");
 				for (i in res) {
-				  if (res.substring(0,5) <= curTime && curTime <= res.substring(6)) {isClosed = false;}
+				  var start = res.substring(0,5);
+				  var end = res.substring(6);
+				  if (end <= start) {end = (parseInt(end) + 24) + "";} 
+				  if (start <= curTime && curTime <= end) {isClosed = false;}
 				}
 				if (isClosed) {return '#A0A0A0';}
 				return percentFull > 80 ? '#E50000' :
