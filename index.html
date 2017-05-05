@@ -258,7 +258,7 @@
 			function style(feature) {
 				var percentFull = feature.properties.density/feature.properties.max * 100;
 				return {
-					fillColor: getColor(percentFull),
+					fillColor: getColor(feature, percentFull),
 					weight: 1,
 					opacity: 1,
 					color: 'white',
@@ -268,14 +268,29 @@
 			}
 
 			// assign color based on density
-			function getColor(percentFull) {
+			function getColor(feature, percentFull) {
+				var isClosed = true;
+				var d = new Date(); 
+				var curDay = d.getDay();
+				var h = d.getHours();
+				var m = d.getMinutes();
+				if (h < 10) {h = "0" + h;}
+				if (m < 10) {m = "0" + m;}
+				var curTime = h + ":" + m;
+				var openTimes = feature.properties.hours.curDay;
+				if (openTimes == "CLOSED") {
+				  return '#A0A0A0';
+				}
+				var res = openTimes.split(", ");
+				for (i in res) {
+				  if (res.substring(0,5) <= curTime && curTime <= res.substring(6)) {isClosed = false;}
+				if (isClosed) {return '#A0A0A0';}
 				return percentFull > 80 ? '#E50000' :
 				percentFull > 60 ? '#DB6300' :
 				percentFull > 40 ? '#F9FB19' :
 				percentFull > 20 ? '#80C800' :
 				'#24BF00';
 			}
-
 			// add listeners
 			function onEachFeature(feature, layer) {
 				layer.on({
