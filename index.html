@@ -5245,6 +5245,16 @@
 				'#24BF00';
 			}
 			
+			// refresh the page on the half hour
+			setInterval("refresh()", 60000);
+			function refresh() {
+				var d = new Date(); 
+				var m = d.getMinutes();
+				if (m == 0 || m == 30 || m = 49) {
+					location.reload(true);
+				}
+			}
+			
 			// add listeners
 			function onEachFeature(feature, layer) {
 				layer.on({
